@@ -1,0 +1,66 @@
+<div class="button-row">
+    <a mat-fab color="primary" [routerLink]="['/books']"><mat-icon>list</mat-icon></a>
+  </div>
+  <form [formGroup]="bookForm" (ngSubmit)="onFormSubmit(bookForm.value)">
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Name" formControlName="name"
+             [errorStateMatcher]="matcher">
+      <mat-error>
+        <span *ngIf="!bookForm.get('name').valid && bookForm.get('name').touched">Please enter Book Name</span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <textarea matInput placeholder="Author" formControlName="author"
+             [errorStateMatcher]="matcher"></textarea>
+      <mat-error>
+        <span *ngIf="!bookForm.get('author').valid && bookForm.get('author').touched">Please enter Book Author</span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <textarea matInput placeholder="Category" formControlName="category"
+               [errorStateMatcher]="matcher"></textarea>
+        <mat-error>
+          <span *ngIf="!bookForm.get('category').valid && bookForm.get('category').touched">Please enter Book Category</span>
+        </mat-error>
+      </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Description" formControlName="description"
+             [errorStateMatcher]="matcher">
+      <mat-error>
+        <span *ngIf="!bookForm.get('description').valid && bookForm.get('description').touched">Please enter a Description</span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="ImagePath" formControlName="imagePath"
+                [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!bookForm.get('imagePath').valid && bookForm.get('imagePath').touched">Please enter image URL</span>
+        </mat-error>
+    </mat-form-field>
+  
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="isbn" formControlName="isbn"
+                [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!bookForm.get('isbn').valid && bookForm.get('isbn').touched">Please enter ISBN number</span>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="copies" formControlName="copies"
+                [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!bookForm.get('copies').valid && bookForm.get('copies').touched">Please enter copies number</span>
+        </mat-error>
+    </mat-form-field>
+
+    <div class="button-row">
+      <button type="submit" mat-fab color="primary"><mat-icon>save</mat-icon></button>
+    </div>
+  </form>
+  

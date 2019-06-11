@@ -1,0 +1,50 @@
+<div class="button-row">
+   <a mat-fab color="primary" [routerLink]="['/books']"><mat-icon>list</mat-icon>Books List</a>
+</div>
+<mat-card class="example-card">
+  <mat-card-header>
+
+    <mat-card-title><h2>{{ book.name }}</h2></mat-card-title>
+    <mat-card-subtitle>{{ book.author }}</mat-card-subtitle>
+  </mat-card-header>
+
+  <img mat-card-image
+          [src]="book.imagePath"
+          alt="{{ book.name}}" >
+  <mat-card-content>
+    <dl>
+      <dt>Author:</dt>
+      <dd>{{book.author}}</dd>
+      <dt>Category:</dt>
+      <dd>{{book.category}}</dd>
+      <dt>Availability:</dt>
+      <dd>{{ book.copies>0 ? 'avaiable' : 'not avaiable'}}</dd>
+      <dt>Description:</dt>
+      <dd>{{ book.description }}</dd>
+      <dt>ISBN:</dt>
+      <dd>{{ book.isbn }}</dd>
+      <dt>Rating: </dt>
+      <dd>{{ book.rating }}</dd>
+    </dl>
+  </mat-card-content>
+
+  <div *ngIf="isAdmin; then admin else notAdmin"></div>
+
+  <ng-template #notAdmin>
+    <mat-form-field>
+        <input matInput placeholder="Days to borrow" [(ngModel)]="days">
+    </mat-form-field>
+
+    <mat-card-actions>
+      <a mat-fab (click)="addBookToUser(days)" color="primary"  class="edit-btn" label="add book"><mat-icon>add</mat-icon></a>
+    </mat-card-actions>
+  </ng-template>
+
+  <ng-template #admin>
+    <mat-card-actions>
+      <a mat-fab color="primary" [routerLink]="['/book-edit', book.id]" class="edit-btn"><mat-icon>edit</mat-icon></a>
+      <a mat-fab color="warn" (click)="deleteBook(book.id)"><mat-icon>delete</mat-icon></a>
+    </mat-card-actions>
+  </ng-template>
+
+</mat-card>

@@ -1,0 +1,30 @@
+<mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{ user?.name }} </mat-card-title>
+      <mat-card-subtitle>{{ user?.lname }} </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <dl>
+        <dt>Role</dt>
+        <dd>{{ user?.role }}</dd>
+        <dt>Email</dt>
+        <dd>{{ user?.email }}</dd>
+        <div *ngIf="isAdmin; then admin else notAdmin"></div>
+
+        <ng-template #notAdmin>
+          <dt>Books</dt>
+            <dd>
+              <button mat-raised-button color="primary" [routerLink]="['/book-issued/'+ user?.email]"> My Books</button>
+            </dd>
+        </ng-template>
+      </dl>
+    </mat-card-content>
+
+    <div class="button-row">
+      <button mat-raised-button color="primary" [routerLink]="['/books']">Book List</button>
+    </div>
+  </mat-card>
+
+

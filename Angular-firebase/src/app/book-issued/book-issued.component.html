@@ -1,0 +1,56 @@
+<div class="row">
+    <button mat-raised-button color="warn" [routerLink]="['/profile', user?.email]">Profile</button>
+</div>
+
+<table mat-table [dataSource]="ELEMENT_DATA" class="mat-elevation-z8">
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="author">
+      <th mat-header-cell *matHeaderCellDef> Author </th>
+      <td mat-cell *matCellDef="let element"> {{element.author}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="category">
+      <th mat-header-cell *matHeaderCellDef> Category </th>
+      <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="checkIn">
+        <th mat-header-cell *matHeaderCellDef> Check In </th>
+        <td mat-cell *matCellDef="let element"> {{element.dateReceived}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+    <ng-container matColumnDef="returnDate">
+        <th mat-header-cell *matHeaderCellDef> Return By </th>
+        <td mat-cell *matCellDef="let element"> {{element.dateToReturn}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+    <ng-container matColumnDef="return">
+        <th mat-header-cell *matHeaderCellDef> Return Book </th>
+        <td mat-cell *matCellDef="let element"> <button mat-button color="primary" (click)="returnBook(element.id)">Return Book</button> </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+    <ng-container matColumnDef="renew">
+        <th mat-header-cell *matHeaderCellDef> Add Days </th>
+        <!-- <button mat-button color="primary" (click)="addDays()">Add Days</button> -->
+        <td mat-cell *matCellDef="let element">
+          <input matInput type="number" name="days" #days>
+            <button (click)="addMoreDays(days, element.id)"> Add Days</button>
+        </td>
+
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
